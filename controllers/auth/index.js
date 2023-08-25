@@ -13,3 +13,4 @@ module.exports = {
   getCurrent: ctrlWrapper(getCurrent),
   theme: ctrlWrapper(theme),
 };
+
