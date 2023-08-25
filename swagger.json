@@ -16,6 +16,10 @@
     {
       "name": "User Profile",
       "description": "User profile endpoints"
+    },
+    {
+      "name": "Feedback",
+      "description": "Send feedback endpoint"
     }
   ],
   "paths": {
@@ -184,6 +188,45 @@
           }
         }
       }
+    },
+    "/feedback/sendFeedback": {
+      "post": {
+        "tags": ["Feedback"],
+        "summary": "Send user feedback",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendFeedBackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feedback sent successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Feedback sent successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -228,6 +271,20 @@
           "theme": {
             "type": "string",
             "example": "violet"
+          }
+        }
+      },
+      "SendFeedBackRequest": {
+        "type": "object",
+        "required": ["email", "message"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "john.dohe@example.com"
+          },
+          "message": {
+            "type": "string",
+            "example": "Your feedback text should be here."
           }
         }
       }
