@@ -1,6 +1,6 @@
 const { User } = require("../../models/user/user");
 
-const { HttpError } = require("../../Helpers");
+const { HttpError } = require("../../helpers");
 
 const theme = async (req, res) => {
   const { _id } = req.user;
