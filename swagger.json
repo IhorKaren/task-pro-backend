@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "title": "Tasks Board Documentation",
     "description": "Test endpoints"
   },
@@ -10,14 +10,18 @@
   "servers": [{ "url": "https://task-pro-covc.onrender.com/api" }, { "url": "http://localhost:3000/api" }],
   "tags": [
     {
-      "name": "Auth",
+      "name": "Authorization",
       "description": "Authorization endpoints"
+    },
+    {
+      "name": "User Profile",
+      "description": "User profile endpoints"
     }
   ],
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Authorization"],
         "summary": "Register a new user",
         "parameters": [],        
         "requestBody": {
@@ -25,7 +29,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegistration"
+                "$ref": "#/components/schemas/UserRegistrationRequest"
               }
             }
           }
@@ -36,7 +40,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserRegistration"
+                  "$ref": "#/components/schemas/UserRegistrationRequest"
                 }
               }
             }
@@ -58,14 +62,14 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Authorization"],
         "summary": "User login",             
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserLogin"
+                "$ref": "#/components/schemas/UserLoginRequest"
               }
             }
           }
@@ -95,7 +99,7 @@
     },
     "/auth/logout": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Authorization"],
         "summary": "User logout",
         "parameters": [],
         "security": [{ "Bearer": [] }],
@@ -111,11 +115,80 @@
           }
         }
       }
+    },
+    "/auth/current": {
+      "get": {
+        "tags": ["Authorization"],
+        "summary": "Get current user information",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Current user info",
+            "content": {
+              "application/json": {
+                "example": {
+                  "name": "John Dohe",
+                  "email": "john.dohe@example.com"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },        
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/user/theme": {
+      "patch": {
+        "tags": ["User Profile"],
+        "summary": "User theme update",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserThemeUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated successful",
+            "content": {
+              "application/json": {
+                "example": {
+                  "theme": "your_updated_theme_goes_here"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "UserRegistration": {
+      "UserRegistrationRequest": {
         "type": "object",
         "required": ["email", "password"],
         "properties": {
@@ -134,7 +207,7 @@
           }
         }
       },
-      "UserLogin": {
+      "UserLoginRequest": {
         "type": "object",
         "required": ["email", "password"],
         "properties": {
@@ -145,6 +218,16 @@
           "password": {
             "type": "string",
             "example": "qwerty123"
+          }
+        }
+      },
+      "UserThemeUpdateRequest": {
+        "type": "object",
+        "required": ["theme"],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "example": "violet"
           }
         }
       }
