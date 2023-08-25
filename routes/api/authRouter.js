@@ -16,6 +16,4 @@ router.post("/logout", authenticate, ctrl.logout);
 
 router.get("/current", authenticate, ctrl.getCurrent);
 
-router.patch("/theme", authenticate, ctrl.theme);
-
 module.exports = router;

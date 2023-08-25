@@ -28,7 +28,7 @@ const userSchema = new Schema(
     theme: {
       type: String,
       enum: ["dark", "light", "violet"],
-      default: "dark",
+      default: "light",
     },
     token: {
       type: String,
@@ -51,9 +51,14 @@ const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+const feedbackSchema = Joi.object({
+  email: Joi.string().pattern(emailRegexp).required(),
+  message: Joi.string().required(),
+})
 const schemas = {
   registerSchema,
   loginSchema,
+  feedbackSchema
 };
 
 const User = model("user", userSchema);
