@@ -7,7 +7,7 @@
   },
   "consumers": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
-  "servers": [{ "url": "https://task-pro-covc.onrender.com/api" }, { "url": "http://localhost:3000/api" }],
+  "servers": [{ "url": "https://task-pro-covc.onrender.com" }, { "url": "http://localhost:3000" }],
   "tags": [
     {
       "name": "Authorization",
@@ -23,7 +23,7 @@
     }
   ],
   "paths": {
-    "/auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": ["Authorization"],
         "summary": "Register a new user",
@@ -64,7 +64,7 @@
         }
       }
     },
-    "/auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": ["Authorization"],
         "summary": "User login",             
@@ -101,7 +101,7 @@
         }
       }
     },
-    "/auth/logout": {
+    "/api/auth/logout": {
       "post": {
         "tags": ["Authorization"],
         "summary": "User logout",
@@ -120,7 +120,7 @@
         }
       }
     },
-    "/auth/current": {
+    "/api/auth/current": {
       "get": {
         "tags": ["Authorization"],
         "summary": "Get current user information",
@@ -150,7 +150,7 @@
         }
       }
     },
-    "/user/theme": {
+    "/api/user/theme": {
       "patch": {
         "tags": ["User Profile"],
         "summary": "User theme update",
@@ -189,7 +189,7 @@
         }
       }
     },
-    "/feedback/sendFeedback": {
+    "/api/feedback/sendFeedback": {
       "post": {
         "tags": ["Feedback"],
         "summary": "Send user feedback",
