@@ -19,8 +19,7 @@
       "post": {
         "tags": ["Auth"],
         "summary": "Register a new user",
-        "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "parameters": [],        
         "requestBody": {
           "required": true,
           "content": {
@@ -60,9 +59,7 @@
     "/auth/login": {
       "post": {
         "tags": ["Auth"],
-        "summary": "User login",
-        "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "summary": "User login",             
         "requestBody": {
           "required": true,
           "content": {
@@ -151,6 +148,13 @@
           }
         }
       }
+    },
+    "securitySchemes": {
+        "Bearer": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+        }
     }
   }
 }
