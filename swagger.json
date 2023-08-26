@@ -282,7 +282,7 @@
         }
       }
     },
-    "/api/board/:{boardId}": {
+    "/api/board/{boardId}": {
       "get": {
         "tags": ["Boards, Columns and Tasks"],
         "summary": "Get board by ID",
@@ -296,7 +296,28 @@
           }
         ],
         "security": [{ "Bearer": [] }],
-        "requestBody": {}
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Board by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBoardByIDResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       }
     }
   },
@@ -375,32 +396,69 @@
           "type": "object",
           "properties": {
             "_id": {
-              "type": "string"
+              "type": "string",
+              "example": "64e9cd645c1d0943eee0c000"
             },
             "title": {
-              "type": "string"
+              "type": "string",
+              "example": "Some Board title"
             },
-            "background": {},
+            "background": {
+              "type": "string",
+              "example": "http://example.com/picture.jpg"
+            },
             "owner": {
-              "type": "string"
+              "type": "string",
+              "example": "64e88f6cc245676d9cbf802b"
             } 
           }
-        },
-        "example": [                  
-          {
-            "_id": "board_ID",
-            "title": "Bord Title",
-            "background": null,
-            "owner": "owner_ID"
+        }                  
+      },
+      "GetBoardByIDResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64e9cd645c1d0943eee0c000"
           },
-          {
-            "_id": "board_ID",
-            "title": "Bord Title",
-            "background": null,
-            "owner": "owner_ID"
-          } 
-        ]                           
-      }      
+          "title": {
+            "type": "string",
+            "example": "Some Board title"
+          },
+          "background": {
+            "type": "string",
+            "example": "http://example.com/picture.jpg"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "64e9cd645c1d0943eee0c000"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Some Column title"
+                }
+              }
+            }
+          },
+          "owner": {
+            "type": "string",
+            "example": "64e88f6cc245676d9cbf802b"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-08-26T10:01:08.310+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-08-26T10:34:53.150+00:00"
+          }
+        }
+      }    
     },
     "securitySchemes": {
       "Bearer": {
