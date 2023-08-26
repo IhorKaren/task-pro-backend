@@ -25,6 +25,8 @@ router.patch(
   ctrl.addColumnInBoard
 );
 
+router.patch("/:boardId/:columnId", authenticate, ctrl.deleteColumn);
+
 router.delete("/:boardId", authenticate, ctrl.deleteBoard);
 
 module.exports = router;
