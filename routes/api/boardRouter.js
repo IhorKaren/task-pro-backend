@@ -1,12 +1,12 @@
 const express = require("express");
-const ctrl = require("../../controllers/board/board.js");
+const ctrl = require("../../controllers/boards");
 const { authenticate } = require("../../middlewares");
 // const { schema } = require("../../models/bord/index.js");
 
-const boardRouter = express.Router();
+const router = express.Router();
 
-boardRouter.get("/", authenticate, ctrl.getAllBoards);
+router.get("/", authenticate, ctrl.addBoard);
 // router.post("/add", authenticate, ctrl.addBoard);
 // router.patch("/:{boradId}", authenticate, ctrl.editBoardTitle);
 
-module.exports = { boardRouter };
+module.exports = router;
