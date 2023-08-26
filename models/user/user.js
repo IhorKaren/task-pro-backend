@@ -28,7 +28,7 @@ const userSchema = new Schema(
     theme: {
       type: String,
       enum: ["dark", "light", "violet"],
-      default: "dark",
+      default: "light",
     },
     token: {
       type: String,
