@@ -14,7 +14,7 @@ const addColumnInBoard = async (req, res, next) => {
       _id: boardId,
       ovner: _id,
     },
-    { $push: { columns: { _id: newObjectId, ...req.body } } },
+    { $push: { columns: { _id: newObjectId, owner: boardId, ...req.body } } },
     { new: true }
   );
 

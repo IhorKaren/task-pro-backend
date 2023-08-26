@@ -6,6 +6,7 @@ const { getBoardById } = require("./getBoardById");
 const { addColumnInBoard } = require("./addColumnInBoard");
 const { deleteBoard } = require("./deleteBoard");
 const { updateBoard } = require("./updateBoard");
+const { updateColumn } = require("./updateColumn");
 const { deleteColumn } = require("./deleteColumn");
 
 module.exports = {
@@ -16,4 +17,5 @@ module.exports = {
   updateBoard: ctrlWrapper(updateBoard),
   getBoardById: ctrlWrapper(getBoardById),
   addColumnInBoard: ctrlWrapper(addColumnInBoard),
+  updateColumn: ctrlWrapper(updateColumn),
 };

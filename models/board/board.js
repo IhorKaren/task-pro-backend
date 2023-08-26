@@ -19,6 +19,9 @@ const boardSchema = new Schema(
     columns: [
       {
         title: { type: String, required: true },
+        owner: {
+          type: Schema.Types.ObjectId,
+        },
         cards: [
           {
             title: { type: String, required: true },
