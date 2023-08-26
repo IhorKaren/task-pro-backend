@@ -9,7 +9,7 @@ const swaggerDocument = require('./swagger.json');
 const authRouter = require("./routes/api/authRouter");
 const feedbackRouter = require("./routes/api/feedbackRouter");
 const userRouter = require("./routes/api/userRoute");
-const boardRouter = require("./routes/api/boardRouter.js");
+const boardRouter = require("./routes/api/boardRouter");
 
 const app = express();
 

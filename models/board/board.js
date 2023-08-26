@@ -5,10 +5,10 @@ const { handleMongooseError } = require("../../helpers");
 
 const boardSchema = new Schema(
   {
-    sequenceNumber: {
-      type: Number,
-      required: true,
-    },
+    // sequenceNumber: {
+    //   type: Number,
+    //   required: true,
+    // },
     title: {
       type: String,
       required: [true, "Set the bord's title"],
@@ -33,7 +33,7 @@ const addBoard = Joi.object({
   title: Joi.string().min(3).max(100).required(),
 });
 
-const boardSchemas = {
+const schemas = {
   addBoard,
 };
 
@@ -41,5 +41,5 @@ const Board = model("board", boardSchema);
 
 module.exports = {
   Board,
-  boardSchemas,
+  schemas,
 };
