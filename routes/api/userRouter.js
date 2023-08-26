@@ -8,8 +8,8 @@ const { authenticate } = require("../../middlewares");
 
 const router = express.Router();
 
-router.patch("/theme", authenticate, ctrl.theme);
-
 router.patch("/", authenticate, uploadCloud.single("avatar"), ctrl.updateUser);
+
+router.patch("/theme", authenticate, ctrl.theme);
 
 module.exports = router;
