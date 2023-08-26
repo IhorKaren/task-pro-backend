@@ -1,30 +1,24 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-// const cardSchemas = require("./card.js");
 
-const columnSchema = new Schema({
-    sequenceNumber: {
-        type: Number,
-        required: true,
-    },
+const columnSchema = new Schema(
+  {
     title: {
       type: String,
-      required: [true, "Set the column's title"],
+      required: true,
     },
-    // cards: [cardSchemas],
-  }, { _id: false, versionKey: false, timestamps: true });
+  },
+  { versionKey: false, timestamps: true }
+);
 
-  const addCard = Joi.object({
-    title: Joi.string()
-    .min(3)
-    .max(100)
-    .required()
+const addColumn = Joi.object({
+  title: Joi.string().min(3).max(100).required(),
 });
 
+const Column = model("column", columnSchema);
 
-const Column = model("card", columnSchema);
 const columnSchemas = {
-  addCard,
+  addColumn,
 };
 
 module.exports = {
