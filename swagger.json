@@ -7,7 +7,10 @@
   },
   "consumers": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
-  "servers": [{ "url": "https://task-pro-covc.onrender.com" }, { "url": "http://localhost:3000" }],
+  "servers": [
+    { "url": "https://task-pro-covc.onrender.com" },
+    { "url": "http://localhost:3000" }
+  ],
   "tags": [
     {
       "name": "Authorization",
@@ -20,6 +23,10 @@
     {
       "name": "Feedback",
       "description": "Send feedback endpoint"
+    },
+    {
+      "name": "Boards, Columns and Tasks",
+      "description": "Boards, Columns and Tasks endpoints"
     }
   ],
   "paths": {
@@ -27,7 +34,7 @@
       "post": {
         "tags": ["Authorization"],
         "summary": "Register a new user",
-        "parameters": [],        
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -67,7 +74,7 @@
     "/api/auth/login": {
       "post": {
         "tags": ["Authorization"],
-        "summary": "User login",             
+        "summary": "User login",
         "requestBody": {
           "required": true,
           "content": {
@@ -140,7 +147,7 @@
           },
           "400": {
             "description": "Bad request"
-          },        
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -227,6 +234,70 @@
           }
         }
       }
+    },
+    "/api/board/": {
+      "post": {
+        "tags": ["Boards, Columns and Tasks"],
+        "summary": "Add a new board",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewBoardRequest"
+              }
+            }
+          }
+        },
+        "responses": {}
+      },
+      "get": {
+        "tags": ["Boards, Columns and Tasks"],
+        "summary": "Get all user's boards",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Current user's bords",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllBoardsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/board/:{boardId}": {
+      "get": {
+        "tags": ["Boards, Columns and Tasks"],
+        "summary": "Get board by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {}
+      }
     }
   },
   "components": {
@@ -287,14 +358,56 @@
             "example": "Your feedback text should be here."
           }
         }
-      }
+      },
+      "AddNewBoardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "To Do"
+          }
+        }
+      },
+      "GetAllBoardsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "background": {},
+            "owner": {
+              "type": "string"
+            } 
+          }
+        },
+        "example": [                  
+          {
+            "_id": "board_ID",
+            "title": "Bord Title",
+            "background": null,
+            "owner": "owner_ID"
+          },
+          {
+            "_id": "board_ID",
+            "title": "Bord Title",
+            "background": null,
+            "owner": "owner_ID"
+          } 
+        ]                           
+      }      
     },
     "securitySchemes": {
-        "Bearer": {
-            "type": "http",
-            "scheme": "bearer",
-            "bearerFormat": "JWT"
-        }
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
   }
 }
