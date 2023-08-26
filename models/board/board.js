@@ -24,6 +24,9 @@ const boardSchema = new Schema(
         },
         cards: [
           {
+            owner: {
+              type: Schema.Types.ObjectId,
+            },
             title: { type: String, required: true },
             text: { type: String, required: true },
             priority: {

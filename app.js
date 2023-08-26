@@ -11,6 +11,7 @@ const feedbackRouter = require("./routes/api/feedbackRouter");
 const userRouter = require("./routes/api/userRouter");
 const boardRouter = require("./routes/api/boardRouter");
 const columnRouter = require("./routes/api/columnsRouter");
+const cardRoute = require("./routes/api/cardsRoute");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use("/api/feedback", feedbackRouter);
 app.use("/api/user", userRouter);
 app.use("/api/board", boardRouter);
 app.use("/api/column", columnRouter);
+app.use("/api/card", cardRoute);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
