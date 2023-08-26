@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-// const columnSchemas = require("./column.js");
+// const { columnSchemas } = require("./column");
 const { handleMongooseError } = require("../../helpers");
 
 const boardSchema = new Schema(
@@ -17,7 +17,25 @@ const boardSchema = new Schema(
       type: String,
       default: null,
     },
-    // columns: [columnSchemas],
+    columns: [
+      {
+        type: Schema.Types.Object,
+        title: { type: String, required: true },
+        cards: [
+          {
+            type: Schema.Types.Object,
+            title: { type: String, required: true },
+            text: { type: String, required: true },
+            priority: {
+              type: String,
+              enum: ["without", "low", "medium", "high"],
+              default: "without",
+            },
+            deadline: { type: String, required: true },
+          },
+        ],
+      },
+    ],
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
@@ -33,8 +51,20 @@ const addBoard = Joi.object({
   title: Joi.string().min(3).max(100).required(),
 });
 
+const addColumn = Joi.object({
+  title: Joi.string().min(3).max(100).required(),
+});
+
+const addCard = Joi.object({
+  title: Joi.string().min(3).max(100).required(),
+  text: Joi.string().min(0).max(300).required(),
+  deadline: Joi.string().required(),
+});
+
 const schemas = {
   addBoard,
+  addColumn,
+  addCard,
 };
 
 const Board = model("board", boardSchema);
