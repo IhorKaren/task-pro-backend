@@ -8,8 +8,7 @@ const swaggerDocument = require("./swagger.json");
 
 const authRouter = require("./routes/api/authRouter");
 const feedbackRouter = require("./routes/api/feedbackRouter");
-const uploadAvatarRouter = require("./routes/api/uploadImageRouter");
-const userRouter = require("./routes/api/userRoute");
+const userRouter = require("./routes/api/userRouter");
 const boardRouter = require("./routes/api/boardRouter");
 const columnRouter = require("./routes/api/columnsRouter");
 
@@ -23,7 +22,6 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/feedback", feedbackRouter);
-app.use("/api/user", uploadAvatarRouter)
 app.use("/api/user", userRouter);
 app.use("/api/board", boardRouter);
 app.use("/api/column", columnRouter);
