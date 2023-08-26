@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-// const { columnSchemas } = require("./column");
 const { handleMongooseError } = require("../../helpers");
 
 const boardSchema = new Schema(
@@ -11,7 +10,7 @@ const boardSchema = new Schema(
     // },
     title: {
       type: String,
-      required: [true, "Set the bord's title"],
+      required: [true, "Set the board's title"],
     },
     background: {
       type: String,
@@ -19,11 +18,12 @@ const boardSchema = new Schema(
     },
     columns: [
       {
-        type: Schema.Types.Object,
         title: { type: String, required: true },
+        owner: {
+          type: Schema.Types.ObjectId,
+        },
         cards: [
           {
-            type: Schema.Types.Object,
             title: { type: String, required: true },
             text: { type: String, required: true },
             priority: {

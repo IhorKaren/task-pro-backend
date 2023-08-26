@@ -11,6 +11,13 @@ router.get("/", authenticate, ctrl.getBoards);
 
 router.get("/:boardId", authenticate, ctrl.getBoardById);
 
+router.put(
+  "/:boardId",
+  validateBody(schemas.addBoard),
+  authenticate,
+  ctrl.updateBoard
+);
+
 router.patch(
   "/:boardId",
   validateBody(schemas.addColumn),
@@ -18,6 +25,14 @@ router.patch(
   ctrl.addColumnInBoard
 );
 
+router.patch("/:boardId/:columnId", authenticate, ctrl.deleteColumn);
+
 router.delete("/:boardId", authenticate, ctrl.deleteBoard);
+
+
+
+///
+router.put("/:boardId/:columnId", authenticate, ctrl.updateColumn);
+///
 
 module.exports = router;

@@ -1,30 +1,34 @@
 const { Board } = require("../../models/board/board");
-const mongoose = require("mongoose");
 
 const { HttpError } = require("../../helpers");
 
-const addColumnInBoard = async (req, res, next) => {
+const deleteColumn = async (req, res, next) => {
   const { _id } = req.user;
-  const { boardId } = req.params;
+  const { boardId, columnId } = req.params;
 
-  const newObjectId = new mongoose.Types.ObjectId();
+  console.log(boardId);
+  console.log(columnId);
 
   const result = await Board.findOneAndUpdate(
     {
       _id: boardId,
-      ovner: _id,
+      owner: _id,
     },
-    { $push: { columns: { _id: newObjectId, owner: boardId, ...req.body } } },
+    { $pull: { columns: { _id: columnId } } },
     { new: true }
   );
+
+  console.log(result);
 
   if (!result) {
     throw HttpError(404, "Not found");
   }
 
-  res.json(result);
+  res.json({
+    message: "Column deleted",
+  });
 };
 
 module.exports = {
-  addColumnInBoard,
+  deleteColumn,
 };
