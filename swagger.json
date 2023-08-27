@@ -292,6 +292,9 @@
           "401": {
             "description": "Unauthorized"
           },
+          "409": {
+            "description": "Title conflict"
+          },
           "500": {
             "description": "Internal server error"
           }
@@ -553,12 +556,22 @@
             } 
           }
         }        ,
-        "example": {
-          "_id": "ID",
-          "title": "Title",
-          "background": "yellow",
-          "owner": "hgkuygdw3s1dvv21df"
-        }                
+        "example": [
+          {
+            "_id": "board_1_ID",
+            "title": "Title for board 1",
+            "background": null,
+            "owner": "owner_ID",
+            "columns": []
+          },
+          {
+            "_id": "board_2_ID",
+            "title": "Title for board 2",
+            "background": null,
+            "owner": "owner_ID",
+            "columns": []
+          }
+        ]               
       },
       "GetBoardByIDResponse": {
         "type": "object",
