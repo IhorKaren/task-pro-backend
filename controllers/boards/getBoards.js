@@ -5,7 +5,7 @@ const getBoards = async (req, res) => {
 
   let result = null;
 
-  result = await Board.find({ owner });
+  result = await Board.find({ owner }, "-createdAt -updatedAt");
   res.json(result);
 };
 

@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "2.0.0",
+    "version": "2.0.1",
     "title": "Tasks Board Documentation",
     "description": "Test endpoints"
   },
@@ -25,8 +25,16 @@
       "description": "Send feedback endpoint"
     },
     {
-      "name": "Boards, Columns and Tasks",
-      "description": "Boards, Columns and Tasks endpoints"
+      "name": "Boards",
+      "description": "Boards endpoints"
+    },
+    {
+      "name": "Columns",
+      "description": "Columns endpoints"
+    },
+    {
+      "name": "Cards",
+      "description": "Cards endpoints"
     }
   ],
   "paths": {
@@ -157,6 +165,16 @@
         }
       }
     },
+    "/user": {
+      "patch": {
+        "tags": ["User Profile"],
+        "summary": "Upload user avatar",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
+      }
+    },
     "/user/theme": {
       "patch": {
         "tags": ["User Profile"],
@@ -235,9 +253,9 @@
         }
       }
     },
-    "/board/": {
+    "/board": {
       "post": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Add a new board",
         "parameters": [],
         "security": [{ "Bearer": [] }],
@@ -251,10 +269,39 @@
             }
           }
         },
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "New board created",
+            "content": {
+              "application/json": {
+                "example": {
+                  "title": "To Do",
+                  "background": "some_background_URL OR empty(null)",
+                  "owner": "owner_ID",
+                  "_id": "board_ID",
+                  "columns": [],
+                  "createdAt": "createdAt_Date_Time",
+                  "updatedAt": "updatedAt_Date_Time"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Title conflict"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       },
       "get": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Get all user's boards",
         "parameters": [],
         "security": [{ "Bearer": [] }],
@@ -282,9 +329,9 @@
         }
       }
     },
-    "/board/:{boardId}": {
+    "/board/{boardId}": {
       "get": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Get board by ID",
         "parameters": [
           {
@@ -296,9 +343,126 @@
           }
         ],
         "security": [{ "Bearer": [] }],
-        "requestBody": {}
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Board by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBoardByIDResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Boards"],
+        "summary": "Update board by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "Board by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetBoardByIDResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Boards"],
+        "summary": "Delete board by ID",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
       }
-    }
+    },
+    "/column/{boardId}": {
+       "get": {
+        "tags": ["Columns"],
+        "summary": "Get board's columns",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
+       },
+       "put": {
+        "tags": ["Columns"],
+        "summary": "Update coolumn",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
+       },
+       "delete": {
+        "tags": ["Columns"],
+        "summary": "Delete coolumn",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
+       }
+    },
+    "/card/{boardId}": {
+      "put": {
+       "tags": ["Cards"],
+       "summary": "Update card",
+       "security": [{ "Bearer": [] }],
+       "requestBody": {},
+       "responses": {}
+      },
+      "post": {
+       "tags": ["Cards"],
+       "summary": "Add card",
+       "security": [{ "Bearer": [] }],
+       "requestBody": {},
+       "responses": {}
+      },
+      "patch": {
+        "tags": ["Cards"],
+        "summary": "Replace card",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
+       },
+      "delete": {
+       "tags": ["Cards"],
+       "summary": "Delete card",
+       "security": [{ "Bearer": [] }],
+       "requestBody": {},
+       "responses": {}
+      }
+   }
   },
   "components": {
     "schemas": {
@@ -375,32 +539,85 @@
           "type": "object",
           "properties": {
             "_id": {
-              "type": "string"
+              "type": "string",
+              "example": "64e9cd645c1d0943eee0c000"
             },
             "title": {
-              "type": "string"
+              "type": "string",
+              "example": "Some Board title"
             },
-            "background": {},
+            "background": {
+              "type": "string",
+              "example": "http://example.com/picture.jpg"
+            },
             "owner": {
-              "type": "string"
+              "type": "string",
+              "example": "64e88f6cc245676d9cbf802b"
             } 
           }
-        },
-        "example": [                  
+        }        ,
+        "example": [
           {
-            "_id": "board_ID",
-            "title": "Bord Title",
+            "_id": "board_1_ID",
+            "title": "Title for board 1",
             "background": null,
-            "owner": "owner_ID"
+            "owner": "owner_ID",
+            "columns": []
           },
           {
-            "_id": "board_ID",
-            "title": "Bord Title",
+            "_id": "board_2_ID",
+            "title": "Title for board 2",
             "background": null,
-            "owner": "owner_ID"
-          } 
-        ]                           
-      }      
+            "owner": "owner_ID",
+            "columns": []
+          }
+        ]               
+      },
+      "GetBoardByIDResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64e9cd645c1d0943eee0c000"
+          },
+          "title": {
+            "type": "string",
+            "example": "Some Board title"
+          },
+          "background": {
+            "type": "string",
+            "example": "http://example.com/picture.jpg"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "example": "64e9cd645c1d0943eee0c000"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Some Column title"
+                }
+              }
+            }
+          },
+          "owner": {
+            "type": "string",
+            "example": "64e88f6cc245676d9cbf802b"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-08-26T10:01:08.310+00:00"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-08-26T10:34:53.150+00:00"
+          }
+        }
+      }    
     },
     "securitySchemes": {
       "Bearer": {
