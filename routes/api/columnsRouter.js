@@ -12,6 +12,8 @@ router.post(
   ctrl.addColumnInBoard
 );
 
+router.get("/:boardId", authenticate, ctrl.getColumns);
+
 router.put("/", authenticate, ctrl.updateColumn);
 
 router.delete("/", authenticate, ctrl.deleteColumn);
