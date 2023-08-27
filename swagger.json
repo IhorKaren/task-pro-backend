@@ -25,8 +25,16 @@
       "description": "Send feedback endpoint"
     },
     {
-      "name": "Boards, Columns and Tasks",
-      "description": "Boards, Columns and Tasks endpoints"
+      "name": "Boards",
+      "description": "Boards endpoints"
+    },
+    {
+      "name": "Columns",
+      "description": "Columns endpoints"
+    },
+    {
+      "name": "Cards",
+      "description": "Cards endpoints"
     }
   ],
   "paths": {
@@ -237,7 +245,7 @@
     },
     "/api/board/": {
       "post": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Add a new board",
         "parameters": [],
         "security": [{ "Bearer": [] }],
@@ -254,7 +262,7 @@
         "responses": {}
       },
       "get": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Get all user's boards",
         "parameters": [],
         "security": [{ "Bearer": [] }],
@@ -284,7 +292,7 @@
     },
     "/api/board/{boardId}": {
       "get": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Get board by ID",
         "parameters": [
           {
@@ -320,7 +328,7 @@
         }
       },
       "put": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Update board by ID",
         "parameters": [
           {
@@ -356,14 +364,14 @@
         }
       },
       "patch": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Add column to the board",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {}
       },
       "delete": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Boards"],
         "summary": "Delete board by ID",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
@@ -372,14 +380,14 @@
     },
     "/api/board/{boardId}/{columnId}": {
        "patch": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Columns"],
         "summary": "Delete column from the board by ID",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {}
        },
        "put": {
-        "tags": ["Boards, Columns and Tasks"],
+        "tags": ["Columns"],
         "summary": "Delete column from the board by ID",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
@@ -478,7 +486,13 @@
               "example": "64e88f6cc245676d9cbf802b"
             } 
           }
-        }                  
+        }        ,
+        "example": {
+          "_id": "ID",
+          "title": "Title",
+          "background": "yellow",
+          "owner": "hgkuygdw3s1dvv21df"
+        }                
       },
       "GetBoardByIDResponse": {
         "type": "object",
