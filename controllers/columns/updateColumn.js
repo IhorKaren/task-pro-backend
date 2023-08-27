@@ -4,8 +4,7 @@ const { HttpError } = require("../../helpers");
 
 const updateColumn = async (req, res, next) => {
   const { _id } = req.user;
-  const { title, owner } = req.body;
-  const { columnId } = req.params;
+  const { title, owner, _id: columnId } = req.body;
 
   const { columns } = await Board.findOne({
     _id: owner,

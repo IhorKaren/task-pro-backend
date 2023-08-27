@@ -4,11 +4,11 @@ const { HttpError } = require("../../helpers");
 
 const deleteColumn = async (req, res, next) => {
   const { _id } = req.user;
-  const { boardId, columnId } = req.params;
+  const { owner, _id: columnId } = req.body;
 
   const result = await Board.findOneAndUpdate(
     {
-      _id: boardId,
+      _id: owner,
       owner: _id,
     },
     { $pull: { columns: { _id: columnId } } },

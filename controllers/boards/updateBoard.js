@@ -9,7 +9,7 @@ const updateBoard = async (req, res, next) => {
   const result = await Board.findOneAndUpdate(
     {
       _id: boardId,
-      ovner: _id,
+      owner: _id,
     },
     req.body,
     { new: true }

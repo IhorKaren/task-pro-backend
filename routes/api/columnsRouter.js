@@ -5,15 +5,15 @@ const { schemas } = require("../../models/board/board");
 
 const router = express.Router();
 
-router.put("/:columnId", authenticate, ctrl.updateColumn);
-
-router.patch(
+router.post(
   "/:boardId",
   validateBody(schemas.addColumn),
   authenticate,
   ctrl.addColumnInBoard
 );
 
-router.delete("/:boardId/:columnId", authenticate, ctrl.deleteColumn);
+router.put("/", authenticate, ctrl.updateColumn);
+
+router.delete("/", authenticate, ctrl.deleteColumn);
 
 module.exports = router;

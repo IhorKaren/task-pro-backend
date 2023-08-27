@@ -8,7 +8,7 @@ const deleteBoard = async (req, res, next) => {
 
   const result = await Board.findOneAndRemove({
     _id: boardId,
-    ovner: _id,
+    owner: _id,
   });
 
   if (!result) {

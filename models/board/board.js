@@ -24,9 +24,6 @@ const boardSchema = new Schema(
         },
         cards: [
           {
-            owner: {
-              type: Schema.Types.ObjectId,
-            },
             title: { type: String, required: true },
             text: { type: String, required: true },
             priority: {
@@ -35,6 +32,10 @@ const boardSchema = new Schema(
               default: "without",
             },
             deadline: { type: String, required: true },
+            owner: {
+              type: Schema.Types.ObjectId,
+              required: true,
+            },
           },
         ],
       },
@@ -62,6 +63,7 @@ const addCard = Joi.object({
   title: Joi.string().min(3).max(100).required(),
   text: Joi.string().min(0).max(300).required(),
   deadline: Joi.string().required(),
+  owner: Joi.string().required(),
 });
 
 const schemas = {

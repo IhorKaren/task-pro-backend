@@ -4,8 +4,8 @@ const { HttpError } = require("../../helpers");
 
 const deleteCard = async (req, res, next) => {
   const { _id } = req.user;
-  const { boardId, columnId } = req.params;
-  const { cardId } = req.body;
+  const { boardId } = req.params;
+  const { _id: cardId, owner } = req.body;
 
   const { columns } = await Board.findOne({
     _id: boardId,
@@ -16,10 +16,10 @@ const deleteCard = async (req, res, next) => {
     throw HttpError(404, "Not found");
   }
 
-  const column = columns.find((column) => column.id === columnId);
+  const column = columns.find((column) => column.id === owner);
 
   if (!column) {
-    throw HttpError(400, `${columnId} is not valid id`);
+    throw HttpError(400, `${owner} is not valid id`);
   }
 
   await Board.updateOne(
