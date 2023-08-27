@@ -7,6 +7,10 @@ const updateCard = async (req, res, next) => {
   const { boardId } = req.params;
   const { _id, owner, title, text, priority, deadline } = req.body;
 
+  if (!boardId) {
+    throw HttpError(400, `${boardId} is not valid id`);
+  }
+
   const { columns } = await Board.findOne({
     _id: boardId,
     owner: userId,

@@ -64,6 +64,7 @@ const addCard = Joi.object({
   text: Joi.string().min(0).max(300).required(),
   deadline: Joi.string().required(),
   owner: Joi.string().required(),
+  priority: Joi.string(),
 });
 
 const schemas = {
