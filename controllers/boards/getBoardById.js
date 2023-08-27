@@ -6,7 +6,7 @@ const getBoardById = async (req, res) => {
 
   let result = null;
 
-  result = await Board.find({ _id: boardId, ovner: _id });
+  result = await Board.find({ _id: boardId, owner: _id });
   res.json(result);
 };
 

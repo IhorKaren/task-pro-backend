@@ -2,16 +2,16 @@ const { Board } = require("../../models/board/board");
 
 const { HttpError } = require("../../helpers");
 
-const updateBoard = async (req, res, next) => {
+const deleteColumn = async (req, res, next) => {
   const { _id } = req.user;
-  const { boardId } = req.params;
+  const { owner, _id: columnId } = req.body;
 
   const result = await Board.findOneAndUpdate(
     {
-      _id: boardId,
+      _id: owner,
       owner: _id,
     },
-    req.body,
+    { $pull: { columns: { _id: columnId } } },
     { new: true }
   );
 
@@ -19,9 +19,9 @@ const updateBoard = async (req, res, next) => {
     throw HttpError(404, "Not found");
   }
 
-  res.json(result);
+  res.status(204);
 };
 
 module.exports = {
-  updateBoard,
+  deleteColumn,
 };

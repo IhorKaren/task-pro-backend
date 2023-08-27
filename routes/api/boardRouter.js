@@ -18,21 +18,6 @@ router.put(
   ctrl.updateBoard
 );
 
-router.patch(
-  "/:boardId",
-  validateBody(schemas.addColumn),
-  authenticate,
-  ctrl.addColumnInBoard
-);
-
-router.patch("/:boardId/:columnId", authenticate, ctrl.deleteColumn);
-
 router.delete("/:boardId", authenticate, ctrl.deleteBoard);
-
-
-
-///
-router.put("/:boardId/:columnId", authenticate, ctrl.updateColumn);
-///
 
 module.exports = router;

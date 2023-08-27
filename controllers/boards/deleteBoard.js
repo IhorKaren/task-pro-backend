@@ -8,15 +8,13 @@ const deleteBoard = async (req, res, next) => {
 
   const result = await Board.findOneAndRemove({
     _id: boardId,
-    ovner: _id,
+    owner: _id,
   });
 
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  res.json({
-    message: "Board deleted",
-  });
+  res.status(204);
 };
 
 module.exports = {
