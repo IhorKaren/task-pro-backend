@@ -346,7 +346,7 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Board by ID",
+            "description": "Get board by ID",
             "content": {
               "application/json": {
                 "schema": {
@@ -379,14 +379,23 @@
           }
         ],
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBoardRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Board by ID",
+            "description": "Update board by ID",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetBoardByIDResponse"
+                  "$ref": "#/components/schemas/UpdateBoardResponse"
                 }
               }
             }
@@ -406,47 +415,69 @@
         "tags": ["Boards"],
         "summary": "Delete board by ID",
         "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Delete board by ID"
+          }
+        ],
         "requestBody": {},
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Deleted successful"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Board was not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       }
     },
     "/column/{boardId}": {
-       "get": {
+      "get": {
         "tags": ["Columns"],
         "summary": "Get board's columns",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {}
-       },
-       "put": {
+      },
+      "put": {
         "tags": ["Columns"],
         "summary": "Update coolumn",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {}
-       },
-       "delete": {
+      },
+      "delete": {
         "tags": ["Columns"],
         "summary": "Delete coolumn",
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {}
-       }
+      }
     },
     "/card/{boardId}": {
       "put": {
-       "tags": ["Cards"],
-       "summary": "Update card",
-       "security": [{ "Bearer": [] }],
-       "requestBody": {},
-       "responses": {}
+        "tags": ["Cards"],
+        "summary": "Update card",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
       },
       "post": {
-       "tags": ["Cards"],
-       "summary": "Add card",
-       "security": [{ "Bearer": [] }],
-       "requestBody": {},
-       "responses": {}
+        "tags": ["Cards"],
+        "summary": "Add card",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
       },
       "patch": {
         "tags": ["Cards"],
@@ -454,15 +485,15 @@
         "security": [{ "Bearer": [] }],
         "requestBody": {},
         "responses": {}
-       },
+      },
       "delete": {
-       "tags": ["Cards"],
-       "summary": "Delete card",
-       "security": [{ "Bearer": [] }],
-       "requestBody": {},
-       "responses": {}
+        "tags": ["Cards"],
+        "summary": "Delete card",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {},
+        "responses": {}
       }
-   }
+    }
   },
   "components": {
     "schemas": {
@@ -530,6 +561,43 @@
           "title": {
             "type": "string",
             "example": "To Do"
+          },
+          "background": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateBoardRequest": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Board name"
+          },
+          "background": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateBoardResponse": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64e9cd645c1d0943eee0c000"
+          },
+          "title": {
+            "type": "string",
+            "example": "Board name"
+          },
+          "background": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string",
+            "example": "64eb2874661d9d1f6d6d6135"
           }
         }
       },
@@ -553,9 +621,9 @@
             "owner": {
               "type": "string",
               "example": "64e88f6cc245676d9cbf802b"
-            } 
+            }
           }
-        }        ,
+        },
         "example": [
           {
             "_id": "board_1_ID",
@@ -571,7 +639,7 @@
             "owner": "owner_ID",
             "columns": []
           }
-        ]               
+        ]
       },
       "GetBoardByIDResponse": {
         "type": "object",
@@ -617,7 +685,7 @@
             "example": "2023-08-26T10:34:53.150+00:00"
           }
         }
-      }    
+      }
     },
     "securitySchemes": {
       "Bearer": {
