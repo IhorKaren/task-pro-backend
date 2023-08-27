@@ -21,12 +21,12 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRouter);
-app.use("/api/feedback", feedbackRouter);
-app.use("/api/user", userRouter);
-app.use("/api/board", boardRouter);
-app.use("/api/column", columnRouter);
-app.use("/api/card", cardRoute);
+app.use("/auth", authRouter);
+app.use("/feedback", feedbackRouter);
+app.use("/user", userRouter);
+app.use("/board", boardRouter);
+app.use("/column", columnRouter);
+app.use("/card", cardRoute);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
