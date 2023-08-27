@@ -53,6 +53,7 @@ boardSchema.post("save", handleMongooseError);
 
 const addBoard = Joi.object({
   title: Joi.string().min(3).max(100).required(),
+  background: Joi.string(),
 });
 
 const addColumn = Joi.object({
@@ -64,7 +65,7 @@ const addCard = Joi.object({
   text: Joi.string().min(0).max(300).required(),
   deadline: Joi.string().required(),
   owner: Joi.string().required(),
-  priority: Joi.string(),
+  priority: Joi.string().required(),
 });
 
 const schemas = {
