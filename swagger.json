@@ -30,7 +30,7 @@
     }
   ],
   "paths": {
-    "/api/auth/register": {
+    "/auth/register": {
       "post": {
         "tags": ["Authorization"],
         "summary": "Register a new user",
@@ -71,7 +71,7 @@
         }
       }
     },
-    "/api/auth/login": {
+    "/auth/login": {
       "post": {
         "tags": ["Authorization"],
         "summary": "User login",
@@ -108,7 +108,7 @@
         }
       }
     },
-    "/api/auth/logout": {
+    "/auth/logout": {
       "post": {
         "tags": ["Authorization"],
         "summary": "User logout",
@@ -127,7 +127,7 @@
         }
       }
     },
-    "/api/auth/current": {
+    "/auth/current": {
       "get": {
         "tags": ["Authorization"],
         "summary": "Get current user information",
@@ -157,7 +157,7 @@
         }
       }
     },
-    "/api/user/theme": {
+    "/user/theme": {
       "patch": {
         "tags": ["User Profile"],
         "summary": "User theme update",
@@ -196,7 +196,7 @@
         }
       }
     },
-    "/api/feedback/sendFeedback": {
+    "/feedback/sendFeedback": {
       "post": {
         "tags": ["Feedback"],
         "summary": "Send user feedback",
@@ -235,7 +235,7 @@
         }
       }
     },
-    "/api/board/": {
+    "/board/": {
       "post": {
         "tags": ["Boards, Columns and Tasks"],
         "summary": "Add a new board",
@@ -282,7 +282,7 @@
         }
       }
     },
-    "/api/board/:{boardId}": {
+    "/board/:{boardId}": {
       "get": {
         "tags": ["Boards, Columns and Tasks"],
         "summary": "Get board by ID",
