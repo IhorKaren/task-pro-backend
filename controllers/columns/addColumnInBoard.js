@@ -15,7 +15,7 @@ const addColumnInBoard = async (req, res, next) => {
       owner: _id,
     },
     { $push: { columns: { _id: newObjectId, owner: boardId, ...req.body } } },
-    { new: true }
+    { new: true, select: "-createdAt -updatedAt" }
   );
 
   if (!result) {
