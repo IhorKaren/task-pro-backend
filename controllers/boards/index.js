@@ -6,6 +6,7 @@ const { getBoardById } = require("./getBoardById");
 
 const { deleteBoard } = require("./deleteBoard");
 const { updateBoard } = require("./updateBoard");
+const { sortBoardCards } = require("./sortBoardCards");
 
 module.exports = {
   addBoard: ctrlWrapper(addBoard),
@@ -13,4 +14,5 @@ module.exports = {
   deleteBoard: ctrlWrapper(deleteBoard),
   updateBoard: ctrlWrapper(updateBoard),
   getBoardById: ctrlWrapper(getBoardById),
+  sortBoardCards: ctrlWrapper(sortBoardCards),
 };

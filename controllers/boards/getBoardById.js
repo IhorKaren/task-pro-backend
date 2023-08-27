@@ -4,9 +4,8 @@ const getBoardById = async (req, res) => {
   const { _id } = req.user;
   const { boardId } = req.params;
 
-  let result = null;
+  const result = await Board.find({ _id: boardId, owner: _id });
 
-  result = await Board.find({ _id: boardId, owner: _id });
   res.json(result);
 };
 

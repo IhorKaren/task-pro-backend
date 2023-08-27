@@ -11,6 +11,8 @@ router.get("/", authenticate, ctrl.getBoards);
 
 router.get("/:boardId", authenticate, ctrl.getBoardById);
 
+router.get("/sort/:boardId/:priority", authenticate, ctrl.sortBoardCards);
+
 router.put(
   "/:boardId",
   validateBody(schemas.addBoard),
