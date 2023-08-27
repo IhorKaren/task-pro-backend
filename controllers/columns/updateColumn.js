@@ -11,6 +11,10 @@ const updateColumn = async (req, res, next) => {
     owner: _id,
   });
 
+  if (!columns) {
+    throw HttpError(400, `${owner} is not valid id`);
+  }
+
   const index = columns.findIndex((column) => column.id === columnId);
 
   if (index === -1) {

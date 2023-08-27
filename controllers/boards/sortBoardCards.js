@@ -1,12 +1,16 @@
 const { Board } = require("../../models/board/board");
 
-const { sortByPriority } = require("../../helpers");
+const { HttpError, sortByPriority } = require("../../helpers");
 
 const sortBoardCards = async (req, res) => {
   const { _id } = req.user;
   const { boardId, priority } = req.params;
 
   const result = await Board.findOne({ _id: boardId, owner: _id });
+
+  if (!result) {
+    throw HttpError(400, `${boardId} is not valid id`);
+  }
 
   let sortedCards = null;
 
@@ -32,7 +36,7 @@ const sortBoardCards = async (req, res) => {
       break;
   }
 
-  res.json(sortedCards);
+  res.json({ ...result._doc, columns: sortedCards });
 };
 
 module.exports = {
