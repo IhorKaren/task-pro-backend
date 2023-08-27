@@ -19,7 +19,7 @@ const deleteColumn = async (req, res, next) => {
     throw HttpError(404, "Not found");
   }
 
-  res.json(result);
+  res.status(204);
 };
 
 module.exports = {

@@ -14,9 +14,7 @@ const deleteBoard = async (req, res, next) => {
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  res.json({
-    message: "Board deleted",
-  });
+  res.status(204);
 };
 
 module.exports = {

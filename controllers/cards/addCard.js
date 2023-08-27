@@ -39,7 +39,7 @@ const addCard = async (req, res, next) => {
     .find((column) => column.id === owner)
     .cards.find((card) => card._id.toString() === newObjectId.toString());
 
-  res.json(result);
+  res.status(201).json(result);
 };
 
 module.exports = {

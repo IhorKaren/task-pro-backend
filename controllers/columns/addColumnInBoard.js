@@ -22,7 +22,7 @@ const addColumnInBoard = async (req, res, next) => {
     throw HttpError(404, "Not found");
   }
 
-  res.json(result);
+  res.status(201).json(result);
 };
 
 module.exports = {

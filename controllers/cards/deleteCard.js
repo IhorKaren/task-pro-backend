@@ -31,9 +31,7 @@ const deleteCard = async (req, res, next) => {
     }
   );
 
-  res.json({
-    messege: "Deleted success",
-  });
+  res.status(204);
 };
 
 module.exports = {
