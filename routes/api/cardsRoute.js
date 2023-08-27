@@ -14,6 +14,8 @@ router.post(
   ctrl.addCard
 );
 
+router.patch("/:boardId", authenticate, ctrl.replaceCard);
+
 router.delete("/:boardId", authenticate, ctrl.deleteCard);
 
 module.exports = router;

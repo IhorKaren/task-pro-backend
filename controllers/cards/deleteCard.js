@@ -9,7 +9,7 @@ const deleteCard = async (req, res, next) => {
 
   const { columns } = await Board.findOne({
     _id: boardId,
-    ovner: _id,
+    owner: _id,
   });
 
   if (!columns) {

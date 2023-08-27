@@ -12,7 +12,7 @@ const addColumnInBoard = async (req, res, next) => {
   const result = await Board.findOneAndUpdate(
     {
       _id: boardId,
-      ovner: _id,
+      owner: _id,
     },
     { $push: { columns: { _id: newObjectId, owner: boardId, ...req.body } } },
     { new: true }
