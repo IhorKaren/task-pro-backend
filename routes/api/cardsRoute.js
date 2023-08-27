@@ -5,7 +5,7 @@ const { schemas } = require("../../models/board/board");
 
 const router = express.Router();
 
-router.put("/:columnId", authenticate, ctrl.addCard);
+router.patch("/:boardId/:columnId", authenticate, ctrl.updateCard);
 
 router.post(
   "/:boardId/:columnId",

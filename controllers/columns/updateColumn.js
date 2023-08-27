@@ -9,7 +9,7 @@ const updateColumn = async (req, res, next) => {
 
   const { columns } = await Board.findOne({
     _id: owner,
-    ovner: _id,
+    owner: _id,
   });
 
   const index = columns.findIndex((column) => column.id === columnId);
