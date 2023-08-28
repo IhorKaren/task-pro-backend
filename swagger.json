@@ -779,8 +779,39 @@
         "tags": ["Cards"],
         "summary": "Replace card",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
-        "responses": {}
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardReplaceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardReplaceResponse"
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        }
       },
       "delete": {
         "tags": ["Cards"],
@@ -1231,6 +1262,63 @@
             "deadline": "08/30/2023",
             "owner": "Column's_ID",
             "_id": "Card's_ID"
+          }
+        }
+      },
+      "CardReplaceRequest": {
+        "type": "object",
+        "required": ["_id", "owner", "newOwner"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Current_column_ID"
+          },
+          "newOwner": {
+            "type": "string",
+            "example": "New_column_ID"
+          }
+        }
+      },
+      "CardReplaceResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "Description to the card"
+          },
+          "priority": {
+            "type": "string",
+            "example": "Card priority"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "Card_deadline"
+          },
+          "owner": {
+            "type": "string",
+            "example": "new_column_owner_ID"
+          },
+          "_id": {
+            "type": "string",
+            "example": "card_ID"
+          }
+        },
+        "example": {
+          "application/json": {            
+              "title": "Steps to do",
+              "text": "Description goes here",
+              "priority": "high",
+              "deadline": "08/29/2023",
+              "owner": "64ec9ff79ea4d56b64413b21",
+              "_id": "64eca0769ea4d56b64413b2c"            
           }
         }
       }
