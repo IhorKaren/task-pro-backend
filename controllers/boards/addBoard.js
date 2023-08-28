@@ -3,7 +3,7 @@ const { HttpError } = require("../../helpers");
 
 const addBoard = async (req, res, next) => {
   const { _id: owner } = req.user;
-  const { title } = req.body;
+  const { title, background } = req.body;
 
   const trimedTitle = title.trim();
 
@@ -13,8 +13,8 @@ const addBoard = async (req, res, next) => {
     throw HttpError(409, "The board whith such title already exist.");
   }
 
-  const result = await Board.create({ ...req.body, owner });
-  
+  const result = await Board.create({ ...req.body, owner, background });
+
   res.status(201).json(result);
 };
 

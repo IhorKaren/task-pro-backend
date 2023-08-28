@@ -5,11 +5,21 @@ const { HttpError } = require("../../helpers");
 const updateBoard = async (req, res, next) => {
   const { _id } = req.user;
   const { boardId } = req.params;
-  const { title } = req.body;
+  const { title, background } = req.body;
 
-  const trimedTitle = title.trim();
+  let trimedTitle = null;
 
-  const board = await Board.findOne({ title: trimedTitle, owner: _id });
+  if (title) {
+    trimedTitle = title.trim();
+  }
+
+  const backgroundCheck = background ? { background } : {};
+
+  const board = await Board.findOne({
+    title: trimedTitle,
+    owner: _id,
+    ...backgroundCheck,
+  });
 
   if (board) {
     throw HttpError(409, "The board whith such title already exist.");

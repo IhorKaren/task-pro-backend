@@ -2,7 +2,7 @@ const { Board } = require("../../models/board/board");
 
 const { HttpError, filter } = require("../../helpers");
 
-const sortBoardCards = async (req, res) => {
+const filterBoardCards = async (req, res) => {
   const { _id } = req.user;
   const { boardId, priority } = req.params;
 
@@ -24,5 +24,5 @@ const sortBoardCards = async (req, res) => {
 };
 
 module.exports = {
-  sortBoardCards,
+  filterBoardCards,
 };
