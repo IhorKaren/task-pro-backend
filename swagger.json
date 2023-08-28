@@ -746,7 +746,7 @@
           "password": "$2b$10$yw6Bpd8dzIIQCQiVUBzVUuKEcs/Wmb/PpUU0qKAMKog21kLZwt2NS",
           "avatar": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg",
           "theme": "light",
-          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWIyODc0NjYxZDlkMWY2ZDZkNjEzNSIsImlhdCI6MTY5MzE2MDQ2NiwiZXhwIjoxNjkzNzY1MjY2fQ.uDFkH-YGZNZ3xjbdEzpm1K1pBRBiDLK2wavptdDzHhI",
+          "token": "your_access_token_here",
           "createdAt": "2023-08-27T10:41:56.612Z",
           "updatedAt": "2023-08-28T08:28:04.002Z"
         }
