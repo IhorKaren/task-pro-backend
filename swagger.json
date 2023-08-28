@@ -741,15 +741,77 @@
         "tags": ["Cards"],
         "summary": "Update card",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
-        "responses": {}
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardUpdateResponse"
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        }
       },
       "patch": {
         "tags": ["Cards"],
         "summary": "Replace card",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
-        "responses": {}
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardReplaceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardReplaceResponse"
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        }
       },
       "delete": {
         "tags": ["Cards"],
@@ -1100,7 +1162,7 @@
         }
       },
       "AddNewCardResponse": {
-        "type": "object",        
+        "type": "object",
         "properties": {
           "title": {
             "type": "string",
@@ -1131,6 +1193,132 @@
             "deadline": "Deadline_date",
             "owner": "Column's_ID",
             "_id": "Card_ID"
+          }
+        }
+      },
+      "CardUpdateRequest": {
+        "type": "object",
+        "required": ["_id", "owner"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Column_ID"
+          },
+          "title": {
+            "type": "string",
+            "example": "New card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "new card description"
+          },
+          "priority": {
+            "type": "string",
+            "example": "new_priority"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "new_dedline"
+          }
+        }
+      },
+      "CardUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Column_ID"
+          },
+          "title": {
+            "type": "string",
+            "example": "New card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "new card description"
+          },
+          "priority": {
+            "type": "string",
+            "example": "new_priority"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "new_dedline"
+          }
+        },
+        "example": {
+          "application/json": {
+            "title": "Updated card's name",
+            "text": "Updated description",
+            "priority": "Updated priority",
+            "deadline": "08/30/2023",
+            "owner": "Column's_ID",
+            "_id": "Card's_ID"
+          }
+        }
+      },
+      "CardReplaceRequest": {
+        "type": "object",
+        "required": ["_id", "owner", "newOwner"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Current_column_ID"
+          },
+          "newOwner": {
+            "type": "string",
+            "example": "New_column_ID"
+          }
+        }
+      },
+      "CardReplaceResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "Description to the card"
+          },
+          "priority": {
+            "type": "string",
+            "example": "Card priority"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "Card_deadline"
+          },
+          "owner": {
+            "type": "string",
+            "example": "new_column_owner_ID"
+          },
+          "_id": {
+            "type": "string",
+            "example": "card_ID"
+          }
+        },
+        "example": {
+          "application/json": {            
+              "title": "Steps to do",
+              "text": "Description goes here",
+              "priority": "high",
+              "deadline": "08/29/2023",
+              "owner": "64ec9ff79ea4d56b64413b21",
+              "_id": "64eca0769ea4d56b64413b2c"            
           }
         }
       }
