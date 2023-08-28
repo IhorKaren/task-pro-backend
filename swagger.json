@@ -741,8 +741,39 @@
         "tags": ["Cards"],
         "summary": "Update card",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
-        "responses": {}
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardUpdateResponse"
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        }
       },
       "patch": {
         "tags": ["Cards"],
@@ -1100,7 +1131,7 @@
         }
       },
       "AddNewCardResponse": {
-        "type": "object",        
+        "type": "object",
         "properties": {
           "title": {
             "type": "string",
@@ -1131,6 +1162,75 @@
             "deadline": "Deadline_date",
             "owner": "Column's_ID",
             "_id": "Card_ID"
+          }
+        }
+      },
+      "CardUpdateRequest": {
+        "type": "object",
+        "required": ["_id", "owner"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Column_ID"
+          },
+          "title": {
+            "type": "string",
+            "example": "New card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "new card description"
+          },
+          "priority": {
+            "type": "string",
+            "example": "new_priority"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "new_dedline"
+          }
+        }
+      },
+      "CardUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Column_ID"
+          },
+          "title": {
+            "type": "string",
+            "example": "New card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "new card description"
+          },
+          "priority": {
+            "type": "string",
+            "example": "new_priority"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "new_dedline"
+          }
+        },
+        "example": {
+          "application/json": {
+            "title": "Updated card's name",
+            "text": "Updated description",
+            "priority": "Updated priority",
+            "deadline": "08/30/2023",
+            "owner": "Column's_ID",
+            "_id": "Card's_ID"
           }
         }
       }
