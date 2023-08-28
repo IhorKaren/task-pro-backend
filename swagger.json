@@ -188,7 +188,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {                  
+                "properties": {
                   "name": {
                     "type": "string",
                     "example": "Brandon Storm"
@@ -700,10 +700,42 @@
     "/card/{boardId}": {
       "post": {
         "tags": ["Cards"],
-        "summary": "Add card",
+        "summary": "Add new card",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
-        "responses": {}
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNewCardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New card created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNewCardResponse"
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        }
       },
       "put": {
         "tags": ["Cards"],
@@ -981,7 +1013,7 @@
         "type": "array",
         "items": {
           "type": "object",
-          "properties": {            
+          "properties": {
             "title": {
               "type": "string",
               "example": "Some Column title"
@@ -989,7 +1021,7 @@
             "_id": {
               "type": "string",
               "example": "64e9cd645c1d0943eee0c000"
-            },          
+            },
             "owner": {
               "type": "string",
               "example": "64e88f6cc245676d9cbf802b"
@@ -997,18 +1029,17 @@
           }
         },
         "example": [
-          {            
+          {
             "title": "Title for column 1",
             "_id": "column_1_ID",
-            "owner": "owner_ID"            
+            "owner": "owner_ID"
           },
-          {            
+          {
             "title": "Title for column 2",
             "_id": "column_2_ID",
-            "owner": "owner_ID"            
+            "owner": "owner_ID"
           }
         ]
-
       },
       "UpdateColumnRequest": {
         "type": "object",
@@ -1039,6 +1070,67 @@
           "_id": {
             "type": "string",
             "example": "Current column_Id"
+          }
+        }
+      },
+      "AddNewCardRequest": {
+        "type": "object",
+        "required": ["title", "text", "deadline", "owner", "priority"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "New card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "Description to the card"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "date_from_pickup_calendar"
+          },
+          "owner": {
+            "type": "string",
+            "example": "owner_ID"
+          },
+          "priority": {
+            "type": "string",
+            "example": "medium"
+          }
+        }
+      },
+      "AddNewCardResponse": {
+        "type": "object",        
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "New card title"
+          },
+          "text": {
+            "type": "string",
+            "example": "Description to the card"
+          },
+          "deadline": {
+            "type": "string",
+            "example": "date_from_pickup_calendar"
+          },
+          "owner": {
+            "type": "string",
+            "example": "owner_ID"
+          },
+          "priority": {
+            "type": "string",
+            "example": "medium"
+          }
+        },
+        "example": {
+          "application/json": {
+            "title": "Swagger Doc",
+            "text": "Describe all endpoints.",
+            "priority": "high",
+            "deadline": "Deadline_date",
+            "owner": "Column's_ID",
+            "_id": "Card_ID"
           }
         }
       }
