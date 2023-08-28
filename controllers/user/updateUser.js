@@ -13,11 +13,15 @@ const updateUser = async (req, res) => {
     ...(password && { password: await bcrypt.hash(password, 10) })
   }
 
+  const checkPassword = password ? { password: newPassword } : {};
+  const checkAvatar = req.file ? { avatar: newAvatar } : {};
+
   const result = await User.findByIdAndUpdate(
     _id,
     { ...updatedFields },
     { new: true, select: "-createdAt -updatedAt -token" }
   );
+
   if (!result) throw HttpError(404);
 
   res.json(result);
