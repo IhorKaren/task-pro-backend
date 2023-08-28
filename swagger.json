@@ -168,10 +168,42 @@
     "/user": {
       "patch": {
         "tags": ["User Profile"],
-        "summary": "Upload user avatar",
+        "summary": "Upload user profile",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
+        "requestBody": {
+          "required": false,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {}
       }
     },
