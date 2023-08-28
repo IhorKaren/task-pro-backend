@@ -181,9 +181,6 @@
                   "avatar": {
                     "type": "string",
                     "format": "binary"
-                  },
-                  "password": {
-                    "type": "string"
                   }
                 }
               }
@@ -191,20 +188,45 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "avatar": {
+                "properties": {                  
+                  "name": {
                     "type": "string",
-                    "format": "binary"
+                    "example": "Brandon Storm"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "brandon.storm@yahoo.com"
                   },
                   "password": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "qwerty123"
                   }
                 }
               }
             }
           }
         },
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Updated successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileUpdateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       }
     },
     "/user/theme": {
@@ -679,6 +701,54 @@
             "type": "string",
             "example": "qwerty123"
           }
+        }
+      },
+      "UserProfileUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "64eb2874661d9d1f6d6d6135"
+          },
+          "name": {
+            "type": "string",
+            "example": "New user name"
+          },
+          "email": {
+            "type": "string",
+            "example": "New user email"
+          },
+          "password": {
+            "type": "string",
+            "example": "New user password"
+          },
+          "avatar": {
+            "type": "string",
+            "example": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg"
+          },
+          "token": {
+            "type": "string",
+            "example": "dt1fhbf1gdbb2.ordfddt21bfdb...."
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2023-08-27T10:41:56.612Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2023-08-28T08:28:04.002Z"
+          }
+        },
+        "example": {
+          "_id": "64eb2874661d9d1f6d6d6135",
+          "name": "Brandon Storm",
+          "email": "joh.dohe@example.com",
+          "password": "$2b$10$yw6Bpd8dzIIQCQiVUBzVUuKEcs/Wmb/PpUU0qKAMKog21kLZwt2NS",
+          "avatar": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg",
+          "theme": "light",
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZWIyODc0NjYxZDlkMWY2ZDZkNjEzNSIsImlhdCI6MTY5MzE2MDQ2NiwiZXhwIjoxNjkzNzY1MjY2fQ.uDFkH-YGZNZ3xjbdEzpm1K1pBRBiDLK2wavptdDzHhI",
+          "createdAt": "2023-08-27T10:41:56.612Z",
+          "updatedAt": "2023-08-28T08:28:04.002Z"
         }
       },
       "UserThemeUpdateRequest": {
