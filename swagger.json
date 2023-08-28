@@ -817,8 +817,39 @@
         "tags": ["Cards"],
         "summary": "Delete card",
         "security": [{ "Bearer": [] }],
-        "requestBody": {},
-        "responses": {}
+        "parameters": [
+          {
+            "in": "path",
+            "name": "boardId",
+            "required": true,
+            "type": "string",
+            "description": "Board's ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteCardRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteCardResponse"
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        }
       }
     }
   },
@@ -1320,6 +1351,26 @@
               "owner": "64ec9ff79ea4d56b64413b21",
               "_id": "64eca0769ea4d56b64413b2c"            
           }
+        }
+      },
+      "DeleteCardRequest": {
+        "type": "object",
+        "required": ["_id", "owner"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "Card_ID"
+          },
+          "owner": {
+            "type": "string",
+            "example": "Column_ID"
+          }
+        }
+      },
+      "DeleteCardResponse": {
+        "typ": "object",
+        "example": {          
+            "message": "Card deleted successfully"          
         }
       }
     },
