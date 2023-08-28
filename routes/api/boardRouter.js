@@ -11,7 +11,7 @@ router.get("/", authenticate, ctrl.getBoards);
 
 router.get("/:boardId", authenticate, ctrl.getBoardById);
 
-router.patch("/filter/:boardId/:priority", authenticate, ctrl.sortBoardCards);
+router.patch("/filter/:boardId/:priority", authenticate, ctrl.filterBoardCards);
 
 router.put(
   "/:boardId",
