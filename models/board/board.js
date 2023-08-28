@@ -16,6 +16,11 @@ const boardSchema = new Schema(
       type: String,
       default: null,
     },
+    filter: {
+      type: String,
+      enum: ["default", "without", "low", "medium", "high"],
+      default: "default",
+    },
     columns: [
       {
         title: { type: String, required: true },
