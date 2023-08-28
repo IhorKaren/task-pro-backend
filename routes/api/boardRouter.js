@@ -11,8 +11,6 @@ router.get("/", authenticate, ctrl.getBoards);
 
 router.get("/:boardId", authenticate, ctrl.getBoardById);
 
-router.patch("/filter/:boardId/:priority", authenticate, ctrl.filterBoardCards);
-
 router.put(
   "/:boardId",
   validateBody(schemas.addBoard),
@@ -21,5 +19,7 @@ router.put(
 );
 
 router.delete("/:boardId", authenticate, ctrl.deleteBoard);
+
+router.patch("/filter/:boardId/:priority", authenticate, ctrl.filterBoardCards);
 
 module.exports = router;
