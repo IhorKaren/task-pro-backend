@@ -5,22 +5,27 @@ const bcrypt = require("bcrypt");
 const updateUser = async (req, res) => {
   const { _id } = req.user;
   const { password } = req.body;
+
   let newPassword = null;
-  let avatar = null;
+  let newAvatar = null;
 
   if (password) {
     newPassword = await bcrypt.hash(password, 10);
   }
 
   if (req.file) {
-    avatar = req.file.path;
+    newAvatar = req.file.path;
   }
+
+  const checkPassword = password ? { password: newPassword } : {};
+  const checkAvatar = req.file ? { avatar: newAvatar } : {};
 
   const result = await User.findByIdAndUpdate(
     _id,
-    { ...req.body, avatar, password: newPassword },
+    { ...req.body, ...checkAvatar, ...checkPassword },
     { new: true }
   );
+
   if (!result) throw HttpError(404);
 
   res.json(result);
