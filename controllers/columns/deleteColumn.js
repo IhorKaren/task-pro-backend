@@ -19,7 +19,9 @@ const deleteColumn = async (req, res, next) => {
     throw HttpError(404, "Not found");
   }
 
-  res.status(204);
+  res.status(200).json({
+    "message": "Column deleted saccessfully"
+  });
 };
 
 module.exports = {
