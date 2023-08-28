@@ -442,7 +442,7 @@
       }
     },
     "/filter/:boardId/:priority": {
-      "get": {
+      "patch": {
         "tags": ["Boards"],
         "summary": "Filter cards on the board",
         "parameters": [
