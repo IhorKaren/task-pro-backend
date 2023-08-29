@@ -3,10 +3,18 @@ const { Board } = require("../../models/board/board");
 const getBoards = async (req, res) => {
   const { _id: owner } = req.user;
 
-  let result = null;
+  const result = await Board.find({ owner }, "-createdAt -updatedAt");
 
-  result = await Board.find({ owner }, "-createdAt -updatedAt");
-  res.json(result);
+  const shortBoards = result.map((board) => {
+    return {
+      title: board.title,
+      _id: board._id,
+      icon: board.icon,
+      owner: board.owner,
+    };
+  });
+
+  res.json(shortBoards);
 };
 
 module.exports = {
