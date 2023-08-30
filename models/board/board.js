@@ -14,7 +14,10 @@ const boardSchema = new Schema(
     },
     icon: { type: String },
     background: {
-      type: Object,
+      min: { type: String },
+      desktop: { type: String },
+      tablet: { type: String },
+      mobile: { type: String },
     },
     filter: {
       type: String,
@@ -58,7 +61,12 @@ boardSchema.post("save", handleMongooseError);
 
 const addBoard = Joi.object({
   title: Joi.string().min(3).max(100).required(),
-  background: Joi.string(),
+  background: Joi.object({
+    min: Joi.string().required(),
+    desktop: Joi.string().required(),
+    tablet: Joi.string().required(),
+    mobile: Joi.string().required(),
+  }),
 });
 
 const addColumn = Joi.object({

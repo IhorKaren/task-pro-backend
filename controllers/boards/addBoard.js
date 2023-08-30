@@ -1,6 +1,5 @@
 const { Board } = require("../../models/board/board");
 const { HttpError } = require("../../helpers");
-const mongoose = require("mongoose");
 
 const addBoard = async (req, res, next) => {
   const { _id: owner } = req.user;
@@ -14,15 +13,10 @@ const addBoard = async (req, res, next) => {
     throw HttpError(409, "The board whith such title already exist.");
   }
 
-  const newObjectId = new mongoose.Types.ObjectId();
-
   const result = await Board.create({
     ...req.body,
     owner,
-    background: {
-      ...background,
-      _id: newObjectId,
-    },
+    background,
   });
 
   res.status(201).json(result);

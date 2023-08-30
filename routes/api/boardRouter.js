@@ -7,9 +7,8 @@ const { authenticate, validateBody } = require("../../middlewares");
 const { schemas } = require("../../models/board/board");
 
 const router = express.Router();
-// validateBody(schemas.addBoard),
 
-router.post("/", authenticate, ctrl.addBoard);
+router.post("/", authenticate, validateBody(schemas.addBoard), ctrl.addBoard);
 
 router.get("/", authenticate, ctrl.getBoards);
 
