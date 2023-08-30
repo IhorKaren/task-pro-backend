@@ -31,7 +31,9 @@ const deleteCard = async (req, res, next) => {
     }
   );
 
-  res.status(204);
+  res.status(200).json({
+    message: "Card deleted saccessfully",
+  });
 };
 
 module.exports = {
