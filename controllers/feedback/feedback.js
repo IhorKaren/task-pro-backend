@@ -18,7 +18,7 @@ const emailSendler = ({ email, message }) => {
     
     const emailMsg  = {
         from: UKR_NET_EMAIL,
-        to: "sven4369@gmail.com",
+        to: "ok.soloviova@gmail.com",
         subject: "Feedback",
         html: `
         <div style="text-align:center;">
