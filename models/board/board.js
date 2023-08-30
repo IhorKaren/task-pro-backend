@@ -14,6 +14,7 @@ const boardSchema = new Schema(
     },
     icon: { type: String },
     background: {
+      min: { type: String },
       desktop: { type: String },
       tablet: { type: String },
       mobile: { type: String },
