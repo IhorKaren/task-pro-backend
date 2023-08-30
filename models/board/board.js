@@ -14,7 +14,7 @@ const boardSchema = new Schema(
     },
     icon: { type: String },
     background: {
-      _id: { type: Schema.Types.ObjectId },
+      _id: { type: String },
       min: { type: String },
       desktop: { type: String },
       tablet: { type: String },
