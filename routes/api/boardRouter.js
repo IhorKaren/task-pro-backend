@@ -14,7 +14,12 @@ router.get("/", authenticate, ctrl.getBoards);
 
 router.get("/:boardId", authenticate, ctrl.getBoardById);
 
-router.put("/:boardId", authenticate, ctrl.updateBoard);
+router.put(
+  "/:boardId",
+  validateBody(schemas.addBoard),
+  authenticate,
+  ctrl.updateBoard
+);
 
 router.delete("/:boardId", authenticate, ctrl.deleteBoard);
 
