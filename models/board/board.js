@@ -61,6 +61,7 @@ boardSchema.post("save", handleMongooseError);
 
 const addBoard = Joi.object({
   title: Joi.string().min(3).max(100).required(),
+  icon: Joi.string().required(),
   background: Joi.object({
     min: Joi.string().required(),
     desktop: Joi.string().required(),
