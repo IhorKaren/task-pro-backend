@@ -308,13 +308,34 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -339,21 +360,50 @@
           "200": {
             "description": "Updated successful",
             "content": {
-              "application/json": {
-                "example": {
-                  "theme": "your_updated_theme_goes_here"
-                }
+              "text/plain": {
+                "example": "'theme_name'"
               }
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -386,13 +436,34 @@
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -419,8 +490,15 @@
             "content": {
               "application/json": {
                 "example": {
-                  "title": "To Do",
-                  "background": "some_background_URL OR empty(null)",
+                  "title": "Board title",
+                  "icon": "file_path",
+                  "background": {
+                    "min": "file_path",
+                    "desktop": "file_path",
+                    "tablet": "file_path",
+                    "mobile": "file_path"
+                  },
+                  "filter": "default",
                   "owner": "owner_ID",
                   "_id": "board_ID",
                   "columns": [],
@@ -431,16 +509,54 @@
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "409": {
-            "description": "Title conflict"
+            "description": "Title conflict",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       },
@@ -462,13 +578,44 @@
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -500,13 +647,44 @@
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       },
@@ -545,13 +723,54 @@
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       },
@@ -571,16 +790,44 @@
         "requestBody": {},
         "responses": {
           "200": {
-            "description": "Deleted successful"
+            "description": "Deleted successful",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Board was not found"
+            "description": "Board was not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -632,16 +879,44 @@
             }
           },
           "400": {
-            "description": "Bad request, invalid input parameters"
+            "description": "Bad request, invalid input parameters",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Board not found"
+            "description": "Board not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -698,9 +973,36 @@
               }
             }
           },
-          "401": { "description": "Unauthorized" },
-          "404": { "description": "Not found" },
-          "500": { "description": "Internal server error" }
+          "401": { 
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404": { 
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            } 
+          },
+          "500": { 
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            } 
+          }
         }
       },
       "get": {
@@ -729,13 +1031,34 @@
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -773,16 +1096,44 @@
         },
         "responses": {
           "200": {
-            "description": "Deleted successful"
+            "description": "Deleted successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Board was not found"
+            "description": "Board was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -822,8 +1173,26 @@
               }
             }
           },
-          "401": { "description": "Unauthorized" },
-          "404": { "description": "Not found" },
+          "401": { 
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404": { 
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          },
           "500": { "description": "Internal server error" }
         }
       },
@@ -860,9 +1229,36 @@
               }
             }
           },
-          "401": { "description": "Unauthorized" },
-          "404": { "description": "Not found" },
-          "500": { "description": "Internal server error" }
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          },          
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          }
         }
       },
       "patch": {
@@ -898,9 +1294,36 @@
               }
             }
           },
-          "401": { "description": "Unauthorized" },
-          "404": { "description": "Not found" },
-          "500": { "description": "Internal server error" }
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
@@ -936,9 +1359,36 @@
               }
             }
           },
-          "401": { "description": "Unauthorized" },
-          "404": { "description": "Not found" },
-          "500": { "description": "Internal server error" }
+          "401": { 
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404": { 
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          },
+          "500": { 
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -1096,9 +1546,9 @@
           "_id": "64eb2874661d9d1f6d6d6135",
           "name": "Brandon Storm",
           "email": "joh.dohe@example.com",
-          "password": "$2b$10$yw6Bpd8dzIIQCQiVUBzVUuKEcs/Wmb/PpUU0qKAMKog21kLZwt2NS",
+          "password": "hashed_password",
           "avatar": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg",
-          "theme": "light",
+          "theme": "current_user_theme",
           "token": "your_access_token_here",
           "createdAt": "2023-08-27T10:41:56.612Z",
           "updatedAt": "2023-08-28T08:28:04.002Z"
@@ -1130,27 +1580,50 @@
       },
       "AddNewBoardRequest": {
         "type": "object",
-        "required": ["title"],
+        "required": ["title", "icon", "background"],
         "properties": {
           "title": {
             "type": "string",
-            "example": "To Do"
+            "example": "New_board_title"
           },
           "background": {
-            "type": "string"
+            "type": "object",
+            "required": ["min", "desktop", "tablet", "mobile"],
+            "properties": {
+              "min": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              },
+              "desktop": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              },
+              "tablet": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              },
+              "mobile": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              }
+            }
+          },
+          "icon":{
+            "type":"string"
           }
         }
       },
       "UpdateBoardRequest": {
         "type": "object",
-        "required": ["title"],
+        "required": ["title", "icon"],
         "properties": {
           "title": {
             "type": "string",
             "example": "Board name"
           },
-          "background": {
-            "type": "string"
+          "icon": {
+            "type": "string",
+            "example": "icon.jpg"
           }
         }
       },
@@ -1179,56 +1652,77 @@
         "type": "array",
         "items": {
           "type": "object",
-          "properties": {
-            "_id": {
-              "type": "string",
-              "example": "64e9cd645c1d0943eee0c000"
-            },
+          "properties": {            
             "title": {
               "type": "string",
               "example": "Some Board title"
             },
-            "background": {
+            "_id": {
               "type": "string",
-              "example": "http://example.com/picture.jpg"
+              "example": "here_goes_board_id"
+            },
+            "icon": {
+              "type": "string",
+              "example": "..path/picture.jpg"
             },
             "owner": {
               "type": "string",
-              "example": "64e88f6cc245676d9cbf802b"
+              "example": "here_goes_owner_id"
             }
           }
         },
         "example": [
-          {
-            "_id": "board_1_ID",
-            "title": "Title for board 1",
-            "background": null,
-            "owner": "owner_ID",
-            "columns": []
-          },
-          {
-            "_id": "board_2_ID",
-            "title": "Title for board 2",
-            "background": null,
-            "owner": "owner_ID",
-            "columns": []
+          {            
+            "title": "Board title",
+            "_id": "board_id",
+            "icon": "...path/file.jpg",
+            "owner": "owner_id"            
           }
         ]
       },
       "GetBoardByIDResponse": {
         "type": "object",
         "properties": {
+          "background": {
+            "type": "object",            
+            "properties": {
+              "min": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              },
+              "desktop": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              },
+              "tablet": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              },
+              "mobile": {
+                "type": "string",
+                "example": "here_goes_file_name"
+              }
+            }
+          },
           "_id": {
             "type": "string",
-            "example": "64e9cd645c1d0943eee0c000"
+            "example": "here_goes_board_id"
           },
           "title": {
             "type": "string",
             "example": "Some Board title"
           },
-          "background": {
+          "icon": {
             "type": "string",
-            "example": "http://example.com/picture.jpg"
+            "example": "file.jppg"
+          },
+          "filter": {
+            "type": "string",
+            "example": "default"
+          },
+          "owner": {
+            "type": "string",
+            "example": "64e88f6cc245676d9cbf802b"
           },
           "columns": {
             "type": "array",
@@ -1245,11 +1739,7 @@
                 }
               }
             }
-          },
-          "owner": {
-            "type": "string",
-            "example": "64e88f6cc245676d9cbf802b"
-          },
+          },          
           "createdAt": {
             "type": "string",
             "example": "2023-08-26T10:01:08.310+00:00"
@@ -1539,6 +2029,30 @@
         "typ": "object",
         "example": {          
             "message": "Card deleted successfully"          
+        }
+      },
+      "UnauthorizedResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "some_text_from_backend_server"
+          }
+        },
+        "example": {
+          "message": "Unauthorized"
+        }
+      },
+      "OtherResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "some_text_from_backend_server"
+          }
+        },
+        "example": {
+          "message": "some_message_goes_here"
         }
       }
     },
