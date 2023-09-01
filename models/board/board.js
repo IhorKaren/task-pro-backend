@@ -12,7 +12,7 @@ const boardSchema = new Schema(
       type: String,
       required: [true, "Set the board's title"],
     },
-    icon: { type: String },
+    icon: { type: String, required: true },
     background: {
       min: { type: String },
       desktop: { type: String },
