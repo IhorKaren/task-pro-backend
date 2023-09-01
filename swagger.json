@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "2.0.1",
+    "version": "3.0.0",
     "title": "Tasks Board Documentation",
     "description": "Test endpoints"
   },
@@ -59,22 +59,40 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserRegistrationRequest"
+                  "$ref": "#/components/schemas/UserRegistrationResponse"
                 }
               }
             }
           },
           "400": {
             "description": "Bad request",
-            "content": {}
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "409": {
             "description": "Provided email exists",
-            "content": {}
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal server error",
-            "content": {}
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -98,20 +116,41 @@
             "description": "Login successful",
             "content": {
               "application/json": {
-                "example": {
-                  "token": "your_access_token_here"
+                "schema": {
+                  "$ref": "#/components/schemas/UserLoginResponse"
                 }
               }
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -124,13 +163,44 @@
         "security": [{ "Bearer": [] }],
         "responses": {
           "204": {
-            "description": "Logout successful"
+            "description": "Logout successful",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Logout successful"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -146,21 +216,41 @@
             "description": "Current user info",
             "content": {
               "application/json": {
-                "example": {
-                  "name": "John Dohe",
-                  "email": "john.dohe@example.com"
+                "schema": {
+                  "$ref": "#/components/schemas/UserCurrentResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal server error"
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "some_message_goes_here"
+                }
+              }
+            }
           }
         }
       }
@@ -874,6 +964,32 @@
           }
         }
       },
+      "UserRegistrationResponse": {
+        "type": "object",        
+        "properties": {          
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.dohe@example.com"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Dohe"
+          },
+          "avatar": {
+            "type": "string",
+            "example": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg"
+          },
+          "theme": {
+            "type": "string",
+            "example": "light"
+          },
+          "token": {
+            "type": "string",
+            "example": "your_access_token_goes_here"
+          }
+        }
+      },
       "UserLoginRequest": {
         "type": "object",
         "required": ["email", "password"],
@@ -886,6 +1002,58 @@
             "type": "string",
             "example": "qwerty123"
           }
+        }
+      },
+      "UserLoginResponse": {
+        "type": "object",        
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Dohe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.dohe@example.com"
+          },
+          "token": {
+            "type": "string",
+            "example": "your_access_token_goes_here"
+          },
+          "avatar": {
+            "type": "string",
+            "example": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg"
+          },
+          "theme": {
+            "type": "string",
+            "example": "light"
+          }          
+        }
+      },
+      "UserCurrentResponse": {
+        "type": "object",        
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john.dohe@example.com"
+          },
+          "token": {
+            "type": "string",
+            "example": "your_access_token_goes_here"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Dohe"
+          }, 
+          "avatar": {
+            "type": "string",
+            "example": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg"
+          },
+          "theme": {
+            "type": "string",
+            "example": "light"
+          }          
         }
       },
       "UserProfileUpdateResponse": {
