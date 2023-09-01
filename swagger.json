@@ -1066,7 +1066,7 @@
     "/column": {
       "put": {
         "tags": ["Columns"],
-        "summary": "Update coolumn",
+        "summary": "Update column",
         "security": [{ "Bearer": [] }],
         "requestBody": {
           "required": true,
@@ -1078,7 +1078,58 @@
             }
           }
         },
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Updated successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateColumnResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Column was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtherResponse"
+                }
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": ["Columns"],
@@ -1781,33 +1832,56 @@
         },
         "example": [
           {
-            "title": "Title for column 1",
-            "_id": "column_1_ID",
-            "owner": "owner_ID"
+            "title": "Column title 1",
+            "_id": "first_column_id",
+            "owner": "borad_id"
           },
           {
-            "title": "Title for column 2",
-            "_id": "column_2_ID",
-            "owner": "owner_ID"
+            "title": "Column title 2",
+            "_id": "second_column_id",
+            "owner": "borad_id"
           }
         ]
       },
       "UpdateColumnRequest": {
         "type": "object",
-        "required": ["title", "owner", "columnId"],
+        "required": ["title", "owner", "_id"],
         "properties": {
           "title": {
             "type": "string",
-            "example": "Existing column name"
+            "example": "New column name"
           },
           "owner": {
             "type": "string",
-            "example": "owner_ID"
+            "example": "board_id"
           },
-          "columnId": {
+          "_Id": {
             "type": "string",
-            "example": "64ebaa34cacc1dcb5c5d10ec"
+            "example": "column_id"
           }
+        }
+      },
+      "UpdateColumnResponse": {
+        "type": "object",        
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Updated column name"
+          },
+          "owner": {
+            "type": "string",
+            "example": "board_id"
+          },
+          "_Id": {
+            "type": "string",
+            "example": "column_id"
+          }
+        },
+        "example": {          
+            "title": "In Progress",            
+            "owner": "Board's_ID",
+            "_id": "Column's_ID",
+            "cards": []          
         }
       },
       "DeleteColumnRequest": {
@@ -1874,15 +1948,13 @@
             "example": "medium"
           }
         },
-        "example": {
-          "application/json": {
+        "example": {          
             "title": "Swagger Doc",
             "text": "Describe all endpoints.",
             "priority": "high",
             "deadline": "Deadline_date",
             "owner": "Column's_ID",
-            "_id": "Card_ID"
-          }
+            "_id": "Card_ID"         
         }
       },
       "CardUpdateRequest": {
@@ -1943,15 +2015,13 @@
             "example": "new_dedline"
           }
         },
-        "example": {
-          "application/json": {
+        "example": {          
             "title": "Updated card's name",
             "text": "Updated description",
             "priority": "Updated priority",
             "deadline": "08/30/2023",
             "owner": "Column's_ID",
-            "_id": "Card's_ID"
-          }
+            "_id": "Card's_ID"          
         }
       },
       "CardReplaceRequest": {
@@ -2000,15 +2070,13 @@
             "example": "card_ID"
           }
         },
-        "example": {
-          "application/json": {            
+        "example": {          
               "title": "Steps to do",
               "text": "Description goes here",
               "priority": "high",
               "deadline": "08/29/2023",
               "owner": "64ec9ff79ea4d56b64413b21",
-              "_id": "64eca0769ea4d56b64413b2c"            
-          }
+              "_id": "64eca0769ea4d56b64413b2c"
         }
       },
       "DeleteCardRequest": {
