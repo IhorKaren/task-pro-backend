@@ -940,7 +940,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddNewColumnRequest"
+                "$ref": "#/components/schemas/AddNewColumnRequest"                
               }
             }
           }
@@ -950,25 +950,8 @@
             "description": "New column created",
             "content": {
               "application/json": {
-                "example": {
-                  "_id": "board_ID",
-                  "title": "Board title",
-                  "background": "background_url",
-                  "owner": "owner_ID",
-                  "columns": [
-                    {
-                      "title": "To Do",
-                      "owner": "owner_ID",
-                      "_id": "first_column_ID",
-                      "cards": []
-                    },
-                    {
-                      "title": "In Progress",
-                      "owner": "owner_ID",
-                      "_id": "second_column_ID",
-                      "cards": []
-                    }
-                  ]
+                "schema": {                  
+                  "$ref": "#/components/schemas/AddNewColumnResponse"
                 }
               }
             }
@@ -1682,6 +1665,27 @@
         "type": "object",
         "required": ["title"],
         "properties": {
+          "background": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "string",
+                "example": "some_file_name"
+              },
+              "desktop": {
+                "type": "string",
+                "example": "some_file_name"
+              },
+              "tablet": {
+                "type": "string",
+                "example": "some_file_name"
+              },
+              "mobile": {
+                "type": "string",
+                "example": "some_file_name"
+              }
+            }
+          },
           "_id": {
             "type": "string",
             "example": "64e9cd645c1d0943eee0c000"
@@ -1690,12 +1694,17 @@
             "type": "string",
             "example": "Board name"
           },
-          "background": {
-            "type": "string"
+          "icon": {
+            "type": "string",
+            "example": "path/icon.jpg"
+          },
+          "filter": {
+            "type": "string",
+            "example": "default"
           },
           "owner": {
             "type": "string",
-            "example": "64eb2874661d9d1f6d6d6135"
+            "example": "owner_ID"
           }
         }
       },
@@ -1811,6 +1820,79 @@
           }
         }
       },
+      "AddNewColumnResponse": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "background": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "string",
+                "example": "path_with_file_name"
+              },
+              "desktop": {
+                "type": "string",
+                "example": "path_with_file_name"
+              },
+              "tablet": {
+                "type": "string",
+                "example": "path_with_file_name"
+              },
+              "mobile": {
+                "type": "string",
+                "example": "path_with_file_name"
+              }
+            }
+          },
+          "_id": {
+            "type": "string",
+            "example": "board_id"
+          },
+          "title": {
+            "type": "string",
+            "example": "Board title"
+          },
+          "icon": {
+            "type": "string",
+            "example": "path/icon.jpg"
+          },
+          "filter": {
+            "type": "string",
+            "example": "default"
+          },
+          "owner": {
+            "type": "string",
+            "example": "owner_ID"
+          },
+          "columns":{
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {                
+                "title": {
+                  "type": "string",
+                  "example": "Some Column title"
+                },
+                "owner": {
+                  "type": "string",
+                  "example": "board_id"
+                },
+                "_id": {
+                  "type": "string",
+                  "example": "column_id"
+                },
+                "cards": {
+                  "type":"array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "GetColumnsByBoardIDResponse": {
         "type": "array",
         "items": {
@@ -1855,7 +1937,7 @@
             "type": "string",
             "example": "board_id"
           },
-          "_Id": {
+          "_id": {
             "type": "string",
             "example": "column_id"
           }
