@@ -15,7 +15,9 @@ mongoose
     const interval = 600000;
     setInterval(() => {
       http
-        .get("https://task-pro-covc.onrender.com/", (res) => {})
+        .get("https://task-pro-covc.onrender.com/", (res) => {
+          console.log('Wake-up!');
+        })
         .on("error", (err) => {
           console.error(err.message);
         });
