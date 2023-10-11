@@ -6,10 +6,6 @@ const dateRegexp = /^\d{2}\/\d{2}\/\d{4}$/;
 
 const boardSchema = new Schema(
   {
-    // sequenceNumber: {
-    //   type: Number,
-    //   required: true,
-    // },
     title: {
       type: String,
       required: [true, "Set the board's title"],
