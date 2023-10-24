@@ -3,7 +3,11 @@
   "info": {
     "version": "3.0.0",
     "title": "Tasks Board Documentation",
-    "description": "Test endpoints"
+    "description": "Test endpoints",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
   },
   "consumers": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
@@ -940,7 +944,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddNewColumnRequest"                
+                "$ref": "#/components/schemas/AddNewColumnRequest"
               }
             }
           }
@@ -950,13 +954,13 @@
             "description": "New column created",
             "content": {
               "application/json": {
-                "schema": {                  
+                "schema": {
                   "$ref": "#/components/schemas/AddNewColumnResponse"
                 }
               }
             }
           },
-          "401": { 
+          "401": {
             "description": "Unauthorized",
             "content": {
               "application/json": {
@@ -966,7 +970,7 @@
               }
             }
           },
-          "404": { 
+          "404": {
             "description": "Not found",
             "content": {
               "application/json": {
@@ -974,9 +978,9 @@
                   "$ref": "#/components/schemas/OtherResponse"
                 }
               }
-            } 
+            }
           },
-          "500": { 
+          "500": {
             "description": "Internal server error",
             "content": {
               "application/json": {
@@ -984,7 +988,7 @@
                   "$ref": "#/components/schemas/OtherResponse"
                 }
               }
-            } 
+            }
           }
         }
       },
@@ -1207,7 +1211,7 @@
               }
             }
           },
-          "401": { 
+          "401": {
             "description": "Unauthorized",
             "content": {
               "application/json": {
@@ -1217,7 +1221,7 @@
               }
             }
           },
-          "404": { 
+          "404": {
             "description": "Not found",
             "content": {
               "application/json": {
@@ -1282,7 +1286,7 @@
                 }
               }
             }
-          },          
+          },
           "500": {
             "description": "Internal server error",
             "content": {
@@ -1393,7 +1397,7 @@
               }
             }
           },
-          "401": { 
+          "401": {
             "description": "Unauthorized",
             "content": {
               "application/json": {
@@ -1403,7 +1407,7 @@
               }
             }
           },
-          "404": { 
+          "404": {
             "description": "Not found",
             "content": {
               "application/json": {
@@ -1413,7 +1417,7 @@
               }
             }
           },
-          "500": { 
+          "500": {
             "description": "Internal server error",
             "content": {
               "application/json": {
@@ -1449,8 +1453,8 @@
         }
       },
       "UserRegistrationResponse": {
-        "type": "object",        
-        "properties": {          
+        "type": "object",
+        "properties": {
           "email": {
             "type": "string",
             "format": "email",
@@ -1489,7 +1493,7 @@
         }
       },
       "UserLoginResponse": {
-        "type": "object",        
+        "type": "object",
         "properties": {
           "name": {
             "type": "string",
@@ -1511,11 +1515,11 @@
           "theme": {
             "type": "string",
             "example": "light"
-          }          
+          }
         }
       },
       "UserCurrentResponse": {
-        "type": "object",        
+        "type": "object",
         "properties": {
           "email": {
             "type": "string",
@@ -1529,7 +1533,7 @@
           "name": {
             "type": "string",
             "example": "John Dohe"
-          }, 
+          },
           "avatar": {
             "type": "string",
             "example": "https://res.cloudinary.com/dbxyhtguo/image/upload/v1693209200/zaglmhxxgeb6ykil9rzz.jpg"
@@ -1537,7 +1541,7 @@
           "theme": {
             "type": "string",
             "example": "light"
-          }          
+          }
         }
       },
       "UserProfileUpdateResponse": {
@@ -1642,8 +1646,8 @@
               }
             }
           },
-          "icon":{
-            "type":"string"
+          "icon": {
+            "type": "string"
           }
         }
       },
@@ -1712,7 +1716,7 @@
         "type": "array",
         "items": {
           "type": "object",
-          "properties": {            
+          "properties": {
             "title": {
               "type": "string",
               "example": "Some Board title"
@@ -1732,11 +1736,11 @@
           }
         },
         "example": [
-          {            
+          {
             "title": "Board title",
             "_id": "board_id",
             "icon": "...path/file.jpg",
-            "owner": "owner_id"            
+            "owner": "owner_id"
           }
         ]
       },
@@ -1744,7 +1748,7 @@
         "type": "object",
         "properties": {
           "background": {
-            "type": "object",            
+            "type": "object",
             "properties": {
               "min": {
                 "type": "string",
@@ -1799,7 +1803,7 @@
                 }
               }
             }
-          },          
+          },
           "createdAt": {
             "type": "string",
             "example": "2023-08-26T10:01:08.310+00:00"
@@ -1865,11 +1869,11 @@
             "type": "string",
             "example": "owner_ID"
           },
-          "columns":{
+          "columns": {
             "type": "array",
             "items": {
               "type": "object",
-              "properties": {                
+              "properties": {
                 "title": {
                   "type": "string",
                   "example": "Some Column title"
@@ -1883,7 +1887,7 @@
                   "example": "column_id"
                 },
                 "cards": {
-                  "type":"array",
+                  "type": "array",
                   "items": {
                     "type": "object"
                   }
@@ -1944,7 +1948,7 @@
         }
       },
       "UpdateColumnResponse": {
-        "type": "object",        
+        "type": "object",
         "properties": {
           "title": {
             "type": "string",
@@ -1959,11 +1963,11 @@
             "example": "column_id"
           }
         },
-        "example": {          
-            "title": "In Progress",            
-            "owner": "Board's_ID",
-            "_id": "Column's_ID",
-            "cards": []          
+        "example": {
+          "title": "In Progress",
+          "owner": "Board's_ID",
+          "_id": "Column's_ID",
+          "cards": []
         }
       },
       "DeleteColumnRequest": {
@@ -2030,13 +2034,13 @@
             "example": "medium"
           }
         },
-        "example": {          
-            "title": "Swagger Doc",
-            "text": "Describe all endpoints.",
-            "priority": "high",
-            "deadline": "Deadline_date",
-            "owner": "Column's_ID",
-            "_id": "Card_ID"         
+        "example": {
+          "title": "Swagger Doc",
+          "text": "Describe all endpoints.",
+          "priority": "high",
+          "deadline": "Deadline_date",
+          "owner": "Column's_ID",
+          "_id": "Card_ID"
         }
       },
       "CardUpdateRequest": {
@@ -2097,13 +2101,13 @@
             "example": "new_dedline"
           }
         },
-        "example": {          
-            "title": "Updated card's name",
-            "text": "Updated description",
-            "priority": "Updated priority",
-            "deadline": "08/30/2023",
-            "owner": "Column's_ID",
-            "_id": "Card's_ID"          
+        "example": {
+          "title": "Updated card's name",
+          "text": "Updated description",
+          "priority": "Updated priority",
+          "deadline": "08/30/2023",
+          "owner": "Column's_ID",
+          "_id": "Card's_ID"
         }
       },
       "CardReplaceRequest": {
@@ -2152,13 +2156,13 @@
             "example": "card_ID"
           }
         },
-        "example": {          
-              "title": "Steps to do",
-              "text": "Description goes here",
-              "priority": "high",
-              "deadline": "08/29/2023",
-              "owner": "64ec9ff79ea4d56b64413b21",
-              "_id": "64eca0769ea4d56b64413b2c"
+        "example": {
+          "title": "Steps to do",
+          "text": "Description goes here",
+          "priority": "high",
+          "deadline": "08/29/2023",
+          "owner": "64ec9ff79ea4d56b64413b21",
+          "_id": "64eca0769ea4d56b64413b2c"
         }
       },
       "DeleteCardRequest": {
@@ -2177,8 +2181,8 @@
       },
       "DeleteCardResponse": {
         "typ": "object",
-        "example": {          
-            "message": "Card deleted successfully"          
+        "example": {
+          "message": "Card deleted successfully"
         }
       },
       "UnauthorizedResponse": {
