@@ -3,11 +3,7 @@
   "info": {
     "version": "3.0.0",
     "title": "Tasks Board Documentation",
-    "description": "Test endpoints",
-    "license": {
-      "name": "MIT",
-      "url": "https://opensource.org/licenses/MIT"
-    }
+    "description": "Test endpoints"
   },
   "consumers": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
