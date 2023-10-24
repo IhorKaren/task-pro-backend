@@ -8,7 +8,7 @@
   "consumers": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://task-pro-covc.onrender.com" },
+    { "url": "https://task-pro-backend.vercel.app" },
     { "url": "http://localhost:3000" }
   ],
   "tags": [
